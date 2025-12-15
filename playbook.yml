@@ -1,17 +1,24 @@
 ---
 - name: Install nginx, deploy index.html, restart service
-  hosts: centos
+  hosts: all
 
   tasks:
-    - name: Install nginx package
+    - name: Install nginx package on CentOS
       ansible.builtin.dnf:
         name: nginx
         state: latest
+      when: ansible_distribution == "CentOS"
+    
+    - name: Install nginx package on Debian 
+      ansible.builtin.apt:
+        name: nginx
+        state: latest
+      when: ansible_distribution == "Debian"
 
     - name: Replace nginx default index.html with our file
-      ansible.builtin.copy:
-        src: index.html
-        dest: /usr/share/nginx/html/index.html
+      ansible.builtin.template:
+        src: index.html.j2
+        dest: "{{ dest }}"
         force: true
 
 

@@ -9,3 +9,13 @@
   - name: Testime 2
     debug: 
       msg: "Hello world!"
+
+  - name: Tingimuslause - centos
+    debug:
+      msg: "Olen CentOS masin!"
+    when: ansible_distribution == "CentOS"
+
+  - name: Tingimuslause - debian
+    debug:
+      msg: "Olen Debiani masin!"
+    when: ansible_distribution == "Debian"
