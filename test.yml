@@ -1,0 +1,11 @@
+- hosts: all
+  user: root
+
+  tasks:
+  - name: Testime
+    debug: 
+      msg: "Hello world!"
+
+  - name: Testime 2
+    debug: 
+      msg: "Hello world!"

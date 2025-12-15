@@ -1,0 +1,22 @@
+---
+- name: Install nginx, deploy index.html, restart service
+  hosts: centos
+
+  tasks:
+    - name: Install nginx package
+      ansible.builtin.dnf:
+        name: nginx
+        state: latest
+
+    - name: Replace nginx default index.html with our file
+      ansible.builtin.copy:
+        src: index.html
+        dest: /usr/share/nginx/html/index.html
+        force: true
+
+
+    - name: Restart and enable nginx service
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+        enabled: true
