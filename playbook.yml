@@ -2,30 +2,10 @@
 - name: Install nginx, deploy index.html, restart service
   hosts: all
 
+  roles: 
+    - nginx
+
   tasks:
-    - name: Install nginx package on CentOS
-      ansible.builtin.dnf:
-        name: nginx
-        state: latest
-      when: ansible_distribution == "CentOS"
-    
-    - name: Install nginx package on Debian 
-      ansible.builtin.apt:
-        name: nginx
-        state: latest
-      when: ansible_distribution == "Debian"
-
-    - name: Replace nginx default index.html with our file
-      ansible.builtin.template:
-        src: index.html.j2
-        dest: "{{ dest }}"
-        force: true
-      notify: restart nginx
-
-
-  handlers:
-    - name: restart nginx
-      ansible.builtin.service:
-        name: nginx
-        state: restarted
-        enabled: true
+    - name: Info
+      debug:
+        msg: "Rolli kasutuse playbook!"

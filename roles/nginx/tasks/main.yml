@@ -1,0 +1,18 @@
+- name: Install nginx package on CentOS
+  ansible.builtin.dnf:
+    name: nginx
+    state: latest
+  when: ansible_distribution == "CentOS"
+    
+- name: Install nginx package on Debian 
+  ansible.builtin.apt:
+    name: nginx
+    state: latest
+  when: ansible_distribution == "Debian"
+
+- name: Replace nginx default index.html with our file
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: "{{ nginx_path_map[ansible_distribution] }}"
+    force: true
+  notify: restart nginx
