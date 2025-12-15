@@ -1,3 +1,7 @@
+[all:vars]
+ansible_user=root
+annsible_password=4e4dYL2TVa8vXkDfg
+
 [centos]
 193.40.153.90
 
