@@ -20,9 +20,11 @@
         src: index.html.j2
         dest: "{{ dest }}"
         force: true
+      notify: restart nginx
 
 
-    - name: Restart and enable nginx service
+  handlers:
+    - name: restart nginx
       ansible.builtin.service:
         name: nginx
         state: restarted
