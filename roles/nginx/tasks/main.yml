@@ -16,3 +16,9 @@
     dest: "{{ nginx_path_map[ansible_distribution] }}"
     force: true
   notify: restart nginx
+  tags: uuendus
+
+- name: Debug message
+  debug:
+    msg: "Say a debug message"
+  tags: debug
