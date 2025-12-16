@@ -1,0 +1,8 @@
+---
+- name: Manage host date and time
+  hosts: all
+
+  tasks:
+    - name: Set timezone to UTC
+      community.general.timezone:
+        name: UTC
