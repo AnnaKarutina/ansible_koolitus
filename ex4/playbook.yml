@@ -1,0 +1,11 @@
+---
+- name: Install nginx, deploy index.html, restart service
+  hosts: all
+
+  roles: 
+    - nginx
+
+  tasks:
+    - name: Info
+      debug:
+        msg: "Rolli kasutuse playbook!"

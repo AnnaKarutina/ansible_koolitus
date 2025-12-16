@@ -1,0 +1,3 @@
+nginx_path_map:
+  CentOS: /usr/share/nginx/html/index.html
+  Debian: /var/www/html/index.html
