@@ -1,0 +1,18 @@
+---
+- name: Enable SSH banner and restart sshd
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Set SSH banner in sshd_config
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^\s*#?\s*Banner\s+.*'
+        line: 'Banner /etc/ssh/sshd-banner'
+        state: present
+        backrefs: false
+
+    - name: Restart sshd service
+      ansible.builtin.service:
+        name: sshd
+        state: restarted
