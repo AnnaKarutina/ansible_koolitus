@@ -3,7 +3,7 @@
   user: root
 
   vars:
-    password: "{{ lookup('password', '/dev/null length=15 chars=ascii_letters,digits') }}"
+    password: "{{ lookup('password', 'credentials/parool{{ inventory_hostname }}.txt length=15 chars=ascii_letters,digits') }}"
 
   tasks:
     - name: Prindi parool
