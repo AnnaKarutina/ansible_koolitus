@@ -3,12 +3,12 @@
 ansible_user=root
 ansible_password=4e4dYL2TVa8vXkDfg
 
-[windows:vars]
-ansible_user=Administrator
-ansible_password=KalaLammasKoer123
-ansible_connection=winrm
-ansible_winrm_port=5985
-ansible_winrm_server_cert_validation=ignore
+#[windows:vars]
+#ansible_user=Administrator
+#ansible_password=KalaLammasKoer123
+#ansible_connection=winrm
+#ansible_winrm_port=5985
+#ansible_winrm_server_cert_validation=ignore
 
 [centos]
 193.40.153.90
@@ -16,5 +16,5 @@ ansible_winrm_server_cert_validation=ignore
 [debian]
 193.40.153.104
 
-[windows]
-193.40.153.88
+#[windows]
+#193.40.153.88

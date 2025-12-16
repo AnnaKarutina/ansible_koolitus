@@ -1,8 +1,16 @@
----
-- name: Manage passwords
+- name: Kasutaja parooli loomine
   hosts: all
+  user: root
+
+  vars:
+    password: "{{ lookup('password', '/dev/null length=15 chars=ascii_letters,digits') }}"
 
   tasks:
-    - name: Genereeri parool
+    - name: Prindi parool
       debug:
-        msg: "Genereerisin parooli: {{ lookup('password', '/dev/null length=15 chars=ascii_letters,digits') }}"
+        var: password
+
+    - name: Tee kasutaja parooliga
+      user:
+        name: kasutaja
+        password: "{{ password | password_hash }}"
