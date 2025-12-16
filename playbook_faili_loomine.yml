@@ -1,0 +1,11 @@
+- hosts: all
+  user: root
+
+  tasks:
+    - name: Create /data directory
+      ansible.builtin.file:
+        path: /data
+        state: directory
+        owner: kasutaja
+        group: kasutaja
+        mode: "0700"
