@@ -1,0 +1,12 @@
+---
+- name: Install nginx, deploy index.html, restart service
+  hosts: all
+
+  roles:
+    - role: geerlingguy.java
+      become: yes
+
+  tasks:
+    - name: Info
+      debug:
+        msg: "java paigaldamise playbook!"
