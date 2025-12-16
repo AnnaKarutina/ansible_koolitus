@@ -1,0 +1,12 @@
+- hosts: localhost
+  user: root
+
+  vars:
+      vault_url: "https://vault.ansible.hashify.ee" # Vaulti aadress
+      vault_username: "training" # Vaulti kasutajanimi (testimiseks)
+      vault_password: "KalaLammasKoer123" # Vaulti parool (testimiseks)
+
+  tasks:
+      - name: Retrieve secret from Vault
+        debug:
+          msg: "The database password is: {{ lookup('community.hashi_vault.hashi_vault', 'secret=secrets/example:password', url=vault_url, auth_method='userpass', username=vault_username, password=vault_password) }}"
