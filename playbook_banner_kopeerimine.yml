@@ -1,0 +1,26 @@
+- name: Deploy SSHD banner using copy content
+  hosts: all
+  become: true
+
+  vars:
+    banner_path: /etc/ssh/sshd-banner
+    org_name: "ANSIBLE KOOLITUS"
+    warn_text: "VOLITAMATA LIGIPÄÄS ON KEELATUD. KÕIK TEGEVUSED LOGITAKSE."
+
+  tasks:
+    - name: Write SSH banner to /etc/ssh/sshd-banner
+      ansible.builtin.copy:
+        dest: "{{ banner_path }}"
+        owner: root
+        group: root
+        mode: "0644"
+        content: |
+          ############################################################
+          #  {{ org_name }} - SSH ACCESS BANNER
+          ############################################################
+          #  {{ warn_text }}
+          #
+          #  Host: {{ inventory_hostname }}
+          #  Deployed by: {{ ansible_user | default('unknown') }}
+          #  Date: {{ ansible_date_time.date }} {{ ansible_date_time.time }}
+          ############################################################
