@@ -1,0 +1,8 @@
+---
+- name: Manage passwords
+  hosts: all
+
+  tasks:
+    - name: Genereeri parool
+      debug:
+        msg: "Genereerisin parooli: {{ lookup('password', '/dev/null length=15 chars=ascii_letters,digits') }}"
