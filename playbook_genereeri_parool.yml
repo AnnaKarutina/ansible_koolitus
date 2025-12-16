@@ -1,8 +1,10 @@
-- name: Muutuja krüpteerimine
+- name: Demo using vaulted variables
   hosts: all
-  user: root
+  vars_files:
+    - vault/paroolid.yml
 
   tasks:
-    - name: Prindi muutuja
+    - name: Show vaulted secrets
       debug:
-        var: "{{ muutuja }}"
+        msg: 
+          - "muutuja oli: {{ parool }}"
