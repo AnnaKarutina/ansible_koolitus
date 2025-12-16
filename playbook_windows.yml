@@ -1,0 +1,28 @@
+---
+- name: Create Windows user ansibleuser
+  hosts: windows
+
+  tasks:
+    - name: Create user ansibleuser with password
+      ansible.windows.win_user:
+        name: ansibleuser
+        password: "Parool1!"
+        state: present
+        groups:
+          - Users
+
+    - name: Create C:\Temp if it does not exist
+      ansible.windows.win_file:
+        path: C:\Temp
+        state: directory
+
+    - name: Copy a single file
+      ansible.windows.win_copy:
+        src: index.html
+        dest: C:\Temp\index.html
+
+    - name: Set Spooler service to auto and start it
+      ansible.windows.win_service:
+        name: Spooler
+        start_mode: auto
+        state: started
