@@ -1,0 +1,14 @@
+---
+- name: Cron job that notifies all logged-in users
+  hosts: all
+  become: true
+
+  vars:
+    wall_message: "TERE! See on Ansible cron-teavitus"
+
+  tasks:
+    - name: Notify all users every 1 minute
+      ansible.builtin.cron:
+        name: "Ansible notification"
+        minute: "*/1"
+        job: '/usr/bin/wall "{{ wall_message }}"'
